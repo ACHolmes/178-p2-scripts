@@ -5,6 +5,8 @@
 
 I recommend installing the `Prettify JSON` extension for VSCode, use the command palette and run `Prettify JSON` if your JSON looks horrific. If it doesn't work, my first guess is you (or I) changed something so that pandas NaNs or other invalid JSON slipped through so it doesn't know what to do.
 
+The `fold all regions` command also makes looking at big JSONs way easier, `CTRL + K, CTRL + 0` (Windows) and then unfold what you need.
+
 ## Andrew's route-orientated data
 
 Anything in `out/route_orientated` is designed to make the data easy to access and think about when working kinda 'route-orientated'. That is, if I know which route I'm interested in, I can quickly find stuff for that route. I could, for example, quickly find how to draw the route, or info about the trips running on this route on this day. I could not, for example, quickly find: 'what are the next 3 buses arriving at the quad stop?` - that would require looking through all the routes, i.e. basically the entire JSON file. I'll try to make a 'stop-orientated' version of this soon.
