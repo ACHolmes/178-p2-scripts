@@ -169,10 +169,26 @@ class GiveMeUsefulData():
     with open(os.path.join(self.routes_dir, "data5.json"), "w") as f:
       json.dump(data, f)
 
-    # Probably should add:
-    # -> For each trip, store the first departure time in the trip obj as well as in its 'stops'
-    #    to allow for easier sorting of trips by time.
-    #
+
+    with open(os.path.join(self.routes_dir, "data5.json"), "r") as f:
+      data = json.load(f)
+
+    # Add first stop, last stop info to each 'trip' one layer higher.
+    for route in data:
+      for trip in route["trips"].values():
+        if trip["stops"]:
+          trip["first_departure_time"] = trip["stops"][0]["departure_time"]
+          trip["first_stop_id"]        = trip["stops"][0]["stop_id"]
+          trip["last_arrival_time"]    = trip["stops"][-1]["arrival_time"]
+          trip["last_stop_id"]         = trip["stops"][-1]["stop_id"]
+        else:
+          trip["first_departure_time"] = ""
+          trip["first_stop_id"]        = 0
+          trip["last_arrival_time"]    = ""
+          trip["last_stop_id"]         = 0
+
+    with open(os.path.join(self.routes_dir, "data6.json"), "w") as f:
+      json.dump(data, f)
 
 
   def get_unique_service_ids(self):
